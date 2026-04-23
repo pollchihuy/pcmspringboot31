@@ -1,3 +1,13 @@
 spring:
   application:
     name: pcmspringboot31
+
+cumi:
+    api:
+        base-url: http://localhost:8080/api
+    es:
+        asal-asalan:
+            - index1
+            - index2
+#cumi.api.base-url
+#cumi.es.defined-indexes
