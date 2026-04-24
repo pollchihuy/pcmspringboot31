@@ -1,0 +1,9 @@
+tolong buatkan saya regex validasi untuk format :
+minimal
+1 huruf kecil
+1 huruf besar
+1 angka
+1 simbol dari _-#$@
+ minimal 12 maksimal 20
+sertakan 5 nilai yang valid dan 5 nilai yang tidak valid
+dan juga jelaskan masing-masing symbol dari regex tersebut secara terstruktur , sistematis dan terperinci
