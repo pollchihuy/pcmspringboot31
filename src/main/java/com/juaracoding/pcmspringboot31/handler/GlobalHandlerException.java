@@ -1,8 +1,11 @@
 package com.juaracoding.pcmspringboot31.handler;
 
+import com.juaracoding.pcmspringboot31.util.LoggingFile;
+import com.juaracoding.pcmspringboot31.util.RequestCapture;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
@@ -17,6 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 1. data
+ * 2. security
+ * 3. media
+ * 4. database
+ * 5. 3rd party api
+ * 6. OS
+ * 7. other
+ */
 //work motion
 //time motion
 @RestControllerAdvice
@@ -36,12 +48,16 @@ public class GlobalHandlerException extends ResponseEntityExceptionHandler {
             );
             errors.add(m);
         }
-        return ResponseEntity.internalServerError().body(errors);
+        LoggingFile.logException(this.getClass().getName(),"handleMethodArgumentNotValid + Request "+ RequestCapture.allRequest(request),ex);
+        return new ResponseHandler().handleResponse("Data Tidak Valid",
+                HttpStatus.BAD_REQUEST,errors,"X01001",request);
     }
 
     @ExceptionHandler(value = Exception.class)
     protected ResponseEntity<Object> handleException(Exception e, HttpServletRequest request) {
         //input ke file log Log4J2
-        return ResponseEntity.internalServerError().body("Proses Gagal !!");
+        LoggingFile.logException(this.getClass().getName(),"handleException",e);
+        return new ResponseHandler().handleResponse("Proses Gagal",
+                HttpStatus.BAD_REQUEST,null,"X07001",request);
     }
 }
