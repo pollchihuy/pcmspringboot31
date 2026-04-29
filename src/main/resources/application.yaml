@@ -1,7 +1,30 @@
+# oracle 1521
+# mysql & mariadb 3306
+# sql server 1433
+# postgresql 5432
+# db2 50000
+# h2 9092
 spring:
   application:
     name: pcmspringboot31
-
+  datasource:
+    url: jdbc:sqlserver://localhost;databaseName=BEB31;schema=projectz;trustServerCertificate=true
+#    url: jdbc:mariadb://localhost:3309/beb31?useSSL=false&serverTimezone=UTC
+    username: sa
+    password: password
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#    driver-class-name: org.mariadb.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+      dialect: org.hibernate.dialect.SQLServerDialect
+#      dialect: org.hibernate.dialect.MariaDBDialect
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: projectz
 cumi:
     api:
         base-url: http://localhost:8080/api
