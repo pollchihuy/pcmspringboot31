@@ -17,15 +17,25 @@ spring:
 #    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: validate
       dialect: org.hibernate.dialect.SQLServerDialect
 #      dialect: org.hibernate.dialect.MariaDBDialect
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#      naming:
+#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
     properties:
       hibernate:
         default_schema: projectz
+  flyway:
+    enabled: true
+  # Sangat direkomendasikan jika Anda menerapkan Flyway ke database yang sudah ada isinya
+    baseline-on-migrate: true
+    baseline-version: "0"
+  # Lokasi direktori file SQL (default)
+    locations: classpath:db/migration/flyway
+  # Skema default yang akan digunakan
+    default-schema: projectz
+
 cumi:
     api:
         base-url: http://localhost:8080/api
