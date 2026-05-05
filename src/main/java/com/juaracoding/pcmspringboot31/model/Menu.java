@@ -18,5 +18,4 @@ public class Menu extends BaseEntity {
     private String path;
     @Column(name = "DeskripsiMenu", nullable = false)
     private String deskripsi;
-
 }

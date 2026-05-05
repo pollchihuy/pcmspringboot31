@@ -51,7 +51,7 @@ public class ResponseHandler {
         m.put("success",!status.isError());
         if(errorCode!=null){
             m.put("error_code",errorCode);
-            m.put("path",request.getContextPath());
+            m.put("path",request.getContextPath().toString());
         }
         return new ResponseEntity<>(m,status);
     }

@@ -1,0 +1,9 @@
+package com.juaracoding.pcmspringboot31.repo;
+
+
+import com.juaracoding.pcmspringboot31.model.Akses;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+public interface AksesRepo extends JpaRepository<Akses, Long> {
+}
