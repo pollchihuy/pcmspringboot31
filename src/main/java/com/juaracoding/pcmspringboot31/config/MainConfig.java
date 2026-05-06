@@ -2,6 +2,7 @@ package com.juaracoding.pcmspringboot31.config;
 
 
 import com.juaracoding.pcmspringboot31.security.Crypto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -34,4 +35,8 @@ public class MainConfig{
         return new Random();
     }
 
+    @Bean
+    public ModelMapper getModelMapper(){
+        return new ModelMapper();
+    }
 }

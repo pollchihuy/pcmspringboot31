@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @Transactional
 public class AksesService implements IServiceDML<Akses>,
-        IServiceQuery<SearchAksesDTO>, IFile<Akses> {
+        IServiceQuery<SearchAksesDTO,Akses>, IFile<Akses> {
 
     @Autowired
     private AksesRepo aksesRepo;
@@ -41,7 +42,7 @@ public class AksesService implements IServiceDML<Akses>,
                 handleResponse("BERHASIL DISIMPAN", HttpStatus.CREATED,null,null,request);
     }
     @Override
-    public ResponseEntity<Object> update(Akses akses, HttpServletRequest request) {
+    public ResponseEntity<Object> update(Long id,Akses akses, HttpServletRequest request) {
         return null;
     }
 
@@ -73,6 +74,11 @@ public class AksesService implements IServiceDML<Akses>,
     @Override
     public void downloadPdf(Akses param, HttpServletRequest request, HttpServletResponse response) {
 
+    }
+
+    @Override
+    public Specification<Akses> getSpecification(SearchAksesDTO param) {
+        return null;
     }
 
     public Akses mapToEntity(ValAksesDTO valAksesDTO){

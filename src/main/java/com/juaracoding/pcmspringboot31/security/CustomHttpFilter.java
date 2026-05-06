@@ -21,12 +21,14 @@ public class CustomHttpFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        if(!request.getContentType().equals("multipart/form-data")){
+        System.out.println("Content-Type : "+request.getContentType());
+        String contentType = request.getContentType()==null?"":request.getContentType();
+        if(!contentType.equals("multipart/form-data")){
             request = new MyHttpServletRequestWrapper(httpRequest);
         }
         // Logika sebelum memproses request
-        System.out.println("Request URI: " + httpRequest.getRequestURI());
-        System.out.println("Request Method: " + httpRequest.getMethod());
+//        System.out.println("Request URI: " + httpRequest.getRequestURI());
+//        System.out.println("Request Method: " + httpRequest.getMethod());
 
         // Melanjutkan ke filter chain
         chain.doFilter(request, response);

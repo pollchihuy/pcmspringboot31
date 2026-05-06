@@ -6,11 +6,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 @Setter
 @Getter
 @Entity
 @Table(name = "MstMenu",schema = "projectz")
+@DynamicUpdate
 public class Menu extends BaseEntity {
     @Column(name = "NamaMenu",length = 20, nullable = false, unique = true)
     private String nama;

@@ -10,6 +10,7 @@ public class ConstantMessage {
     public static final String SUCCESS_SAVE = "Berhasil menyimpan data";
     public static final String SUCCESS_DELETE = "Berhasil menghapus data";
     public static final String SUCCESS_UPDATE = "Berhasil mengubah data";
+    public static final String OK = "OK";
 
     /** unsuccess message */
     public static final String FAILED_SAVE = "Gagal menyimpan data";

@@ -25,5 +25,5 @@ public class ValAksesDTO {
     @Pattern(regexp = "^[a-zA-Z0-9\\s]{20,255}$", message = "Alfanumeric dan spasi min 20 maks 255")
     private String deskripsi;
     @NotNull(message = ConstantMessage.NOT_NULL)
-    private List<Long> menus;
+    private List<Long> menuId;
 }

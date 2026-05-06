@@ -14,7 +14,7 @@ public class ValMenuDTO {
     @NotNull(message = ConstantMessage.NOT_NULL)
     @NotEmpty(message = ConstantMessage.NOT_EMPTY)
     @NotBlank(message = ConstantMessage.NOT_BLANK)
-    @Pattern(regexp = "^[a-zA-Z0-9\\s]{5,20}$", message = "Alfanumeric dan spasi min 5 maks 20")
+    @Pattern(regexp = "^[a-zA-Z0-9\\s]{3,20}$", message = "Alfanumeric dan spasi min 3 maks 20")
     private String nama;
     @NotNull(message = ConstantMessage.NOT_NULL)
     @NotEmpty(message = ConstantMessage.NOT_EMPTY)
