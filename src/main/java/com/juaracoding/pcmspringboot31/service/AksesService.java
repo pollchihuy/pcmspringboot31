@@ -42,13 +42,6 @@ public class AksesService implements IServiceDML<Akses>, IServiceQuery<SearchAks
 
     @Autowired
     private TransformPagination tp;
-    @Autowired
-    private SpringTemplateEngine springTemplateEngine;
-
-    @Autowired
-    private PdfGenerator pdfGenerator;
-
-    private StringBuilder sBuild = new StringBuilder();
 
     @Override
     public ResponseEntity<Object> save(Akses akses, HttpServletRequest request) {

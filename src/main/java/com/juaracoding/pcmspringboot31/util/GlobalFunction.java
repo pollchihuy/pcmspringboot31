@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 
 public class GlobalFunction {
 
+    public static final String AUTH_HEADERS = "Authorization";
+//    public static final String AUTH_HEADERS = "Jwt";
+
     /** filter pencarian untuk string */
     public static Boolean checkFilter(String s){
         return s!=null && !s.isEmpty() && !s.isBlank() && regexText(s);

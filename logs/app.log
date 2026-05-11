@@ -17271,3 +17271,201 @@ ERROR IS ==> ModelMapper mapping errors:
 2026-05-08 19:15:52 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2026-05-08 19:15:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-05-08 19:15:52 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-11 20:06:40 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-05-11 20:06:40 [main] INFO  com.juaracoding.pcmspringboot31.Pcmspringboot31Application - Starting Pcmspringboot31Application using Java 21.0.4 with PID 18172 (D:\Class-Bootcamp\Batch31\pcmspringboot31\target\classes started by pollc in D:\Class-Bootcamp\Batch31\pcmspringboot31)
+2026-05-11 20:06:40 [main] DEBUG com.juaracoding.pcmspringboot31.Pcmspringboot31Application - Running with Spring Boot v3.4.10, Spring v6.2.11
+2026-05-11 20:06:40 [main] INFO  com.juaracoding.pcmspringboot31.Pcmspringboot31Application - No active profile set, falling back to 1 default profile: "default"
+2026-05-11 20:06:41 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-11 20:06:42 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 175 ms. Found 3 JPA repository interfaces.
+2026-05-11 20:06:43 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-11 20:06:43 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-11 20:06:43 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-11 20:06:43 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-05-11 20:06:43 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-05-11 20:06:43 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3223 ms
+2026-05-11 20:06:44 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-11 20:06:45 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 030b32fc-a5f0-4e20-ad47-92b68de96954
+2026-05-11 20:06:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-11 20:06:45 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:sqlserver://localhost:1433;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;cacheBulkCopyMetadata=false;bulkCopyForBatchInsertAllowEncryptedValueModifications=false;bulkCopyForBatchInsertTableLock=false;bulkCopyForBatchInsertKeepNulls=false;bulkCopyForBatchInsertKeepIdentity=false;bulkCopyForBatchInsertFireTriggers=false;bulkCopyForBatchInsertCheckConstraints=false;bulkCopyForBatchInsertBatchSize=0;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;calcBigDecimalPrecision=false;useDefaultJaasConfig=false;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;datetimeParameterType=datetime2;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=true;TransparentNetworkIPResolution=true;iPAddressPreference=IPv4First;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;useDefaultGSSCredential=false;prepareMethod=prepexec;encrypt=True;disableStatementPooling=true;databaseName=BEB31;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite; (Microsoft SQL Server 15.0)
+2026-05-11 20:06:45 [main] WARN  org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Validate failed: Migrations have failed validation
+Detected resolved migration not applied to database: 2605051927.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Detected resolved migration not applied to database: 2605051933.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Detected resolved migration not applied to database: 2605051935.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Need more flexibility with validation rules? Learn more: https://rd.gt/3AbJUZE
+2026-05-11 20:06:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-11 20:06:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-11 20:06:45 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2026-05-11 20:06:45 [main] INFO  org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-05-11 20:06:45 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'flywayInitializer' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Validate failed: Migrations have failed validation
+Detected resolved migration not applied to database: 2605051927.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Detected resolved migration not applied to database: 2605051933.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Detected resolved migration not applied to database: 2605051935.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Need more flexibility with validation rules? Learn more: https://rd.gt/3AbJUZE
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:328) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:970) ~[spring-context-6.2.11.jar:6.2.11]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.11.jar:6.2.11]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.4.10.jar:3.4.10]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) [spring-boot-3.4.10.jar:3.4.10]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) [spring-boot-3.4.10.jar:3.4.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) [spring-boot-3.4.10.jar:3.4.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) [spring-boot-3.4.10.jar:3.4.10]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) [spring-boot-3.4.10.jar:3.4.10]
+	at com.juaracoding.pcmspringboot31.Pcmspringboot31Application.main(Pcmspringboot31Application.java:10) [classes/:?]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Validate failed: Migrations have failed validation
+Detected resolved migration not applied to database: 2605051927.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Detected resolved migration not applied to database: 2605051933.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Detected resolved migration not applied to database: 2605051935.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Need more flexibility with validation rules? Learn more: https://rd.gt/3AbJUZE
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.11.jar:6.2.11]
+	... 10 more
+Caused by: org.flywaydb.core.api.exception.FlywayValidateException: Validate failed: Migrations have failed validation
+Detected resolved migration not applied to database: 2605051927.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Detected resolved migration not applied to database: 2605051933.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Detected resolved migration not applied to database: 2605051935.
+To ignore this migration, set -ignoreMigrationPatterns='*:ignored'. To allow executing this migration, set -outOfOrder=true.
+Need more flexibility with validation rules? Learn more: https://rd.gt/3AbJUZE
+	at org.flywaydb.core.Flyway.lambda$migrate$1(Flyway.java:189) ~[flyway-core-10.20.1.jar:?]
+	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:213) ~[flyway-core-10.20.1.jar:?]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:176) ~[flyway-core-10.20.1.jar:?]
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66) ~[spring-boot-autoconfigure-3.4.10.jar:3.4.10]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.11.jar:6.2.11]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.11.jar:6.2.11]
+	... 10 more
+2026-05-11 20:08:02 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-05-11 20:08:02 [main] INFO  com.juaracoding.pcmspringboot31.Pcmspringboot31Application - Starting Pcmspringboot31Application using Java 21.0.4 with PID 17036 (D:\Class-Bootcamp\Batch31\pcmspringboot31\target\classes started by pollc in D:\Class-Bootcamp\Batch31\pcmspringboot31)
+2026-05-11 20:08:02 [main] DEBUG com.juaracoding.pcmspringboot31.Pcmspringboot31Application - Running with Spring Boot v3.4.10, Spring v6.2.11
+2026-05-11 20:08:02 [main] INFO  com.juaracoding.pcmspringboot31.Pcmspringboot31Application - No active profile set, falling back to 1 default profile: "default"
+2026-05-11 20:08:04 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-11 20:08:04 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 92 ms. Found 3 JPA repository interfaces.
+2026-05-11 20:08:05 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-11 20:08:05 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-11 20:08:05 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-11 20:08:05 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-05-11 20:08:05 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-05-11 20:08:05 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2381 ms
+2026-05-11 20:08:05 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-11 20:08:06 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 3ca1a6e6-ce6e-4aa3-80c8-270b999d7d50
+2026-05-11 20:08:06 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-11 20:08:06 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:sqlserver://localhost:1433;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;cacheBulkCopyMetadata=false;bulkCopyForBatchInsertAllowEncryptedValueModifications=false;bulkCopyForBatchInsertTableLock=false;bulkCopyForBatchInsertKeepNulls=false;bulkCopyForBatchInsertKeepIdentity=false;bulkCopyForBatchInsertFireTriggers=false;bulkCopyForBatchInsertCheckConstraints=false;bulkCopyForBatchInsertBatchSize=0;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;calcBigDecimalPrecision=false;useDefaultJaasConfig=false;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;datetimeParameterType=datetime2;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=true;TransparentNetworkIPResolution=true;iPAddressPreference=IPv4First;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;useDefaultGSSCredential=false;prepareMethod=prepexec;encrypt=True;disableStatementPooling=true;databaseName=BEB31;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite; (Microsoft SQL Server 15.0)
+2026-05-11 20:08:07 [main] INFO  org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory - Schema history table [BEB31].[projectz].[flyway_schema_history] does not exist yet
+2026-05-11 20:08:07 [main] INFO  org.flywaydb.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.049s)
+2026-05-11 20:08:07 [main] INFO  org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory - Creating Schema History table [BEB31].[projectz].[flyway_schema_history] ...
+2026-05-11 20:08:07 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Current version of schema [projectz]: << Empty Schema >>
+2026-05-11 20:08:07 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Migrating schema [projectz] to version "2605051927 - init  database"
+2026-05-11 20:08:07 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Migrating schema [projectz] to version "2605051933 - hapus  kolom  deskripsi"
+2026-05-11 20:08:07 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Migrating schema [projectz] to version "2605051935 - tambah kolom baru"
+2026-05-11 20:08:07 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Successfully applied 3 migrations to schema [projectz], now at version v2605051935 (execution time 00:00.155s)
+2026-05-11 20:08:07 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-11 20:08:07 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-05-11 20:08:07 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-11 20:08:08 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-11 20:08:08 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-11 20:08:10 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-11 20:08:11 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-11 20:08:12 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-11 20:08:12 [main] WARN  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 2af58c7d-7f13-4118-a4a4-5dd9610a8a13
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-11 20:08:12 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-11 20:08:13 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-05-11 20:08:13 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-05-11 20:08:13 [main] INFO  com.juaracoding.pcmspringboot31.Pcmspringboot31Application - Started Pcmspringboot31Application in 11.18 seconds (process running for 13.732)
+2026-05-11 20:08:51 [http-nio-8080-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-11 20:08:51 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-11 20:08:51 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-05-11 20:14:24 [SpringApplicationShutdownHook] INFO  org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-11 20:14:24 [tomcat-shutdown] INFO  org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-05-11 20:14:24 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-11 20:14:24 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-11 20:14:24 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-05-11 20:14:31 [background-preinit] INFO  org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2026-05-11 20:14:31 [main] INFO  com.juaracoding.pcmspringboot31.Pcmspringboot31Application - Starting Pcmspringboot31Application using Java 21.0.4 with PID 22796 (D:\Class-Bootcamp\Batch31\pcmspringboot31\target\classes started by pollc in D:\Class-Bootcamp\Batch31\pcmspringboot31)
+2026-05-11 20:14:31 [main] DEBUG com.juaracoding.pcmspringboot31.Pcmspringboot31Application - Running with Spring Boot v3.4.10, Spring v6.2.11
+2026-05-11 20:14:31 [main] INFO  com.juaracoding.pcmspringboot31.Pcmspringboot31Application - No active profile set, falling back to 1 default profile: "default"
+2026-05-11 20:14:32 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-05-11 20:14:32 [main] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 97 ms. Found 3 JPA repository interfaces.
+2026-05-11 20:14:33 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-05-11 20:14:33 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-05-11 20:14:33 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-05-11 20:14:33 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-05-11 20:14:33 [main] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-05-11 20:14:33 [main] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2203 ms
+2026-05-11 20:14:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-05-11 20:14:34 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 8dc397c4-de22-4851-98aa-0120b475a305
+2026-05-11 20:14:34 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-05-11 20:14:35 [main] INFO  org.flywaydb.core.FlywayExecutor - Database: jdbc:sqlserver://localhost:1433;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;cacheBulkCopyMetadata=false;bulkCopyForBatchInsertAllowEncryptedValueModifications=false;bulkCopyForBatchInsertTableLock=false;bulkCopyForBatchInsertKeepNulls=false;bulkCopyForBatchInsertKeepIdentity=false;bulkCopyForBatchInsertFireTriggers=false;bulkCopyForBatchInsertCheckConstraints=false;bulkCopyForBatchInsertBatchSize=0;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;calcBigDecimalPrecision=false;useDefaultJaasConfig=false;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;datetimeParameterType=datetime2;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=true;TransparentNetworkIPResolution=true;iPAddressPreference=IPv4First;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;useDefaultGSSCredential=false;prepareMethod=prepexec;encrypt=True;disableStatementPooling=true;databaseName=BEB31;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite; (Microsoft SQL Server 15.0)
+2026-05-11 20:14:35 [main] INFO  org.flywaydb.core.internal.command.DbValidate - Successfully validated 3 migrations (execution time 00:00.068s)
+2026-05-11 20:14:35 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Current version of schema [projectz]: 2605051935
+2026-05-11 20:14:35 [main] INFO  org.flywaydb.core.internal.command.DbMigrate - Schema [projectz] is up to date. No migration necessary.
+2026-05-11 20:14:35 [main] INFO  org.hibernate.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-05-11 20:14:35 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-05-11 20:14:35 [main] INFO  org.hibernate.cache.internal.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-05-11 20:14:35 [main] INFO  org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-05-11 20:14:36 [main] INFO  org.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-05-11 20:14:37 [main] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-05-11 20:14:38 [main] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-05-11 20:14:38 [main] WARN  org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-05-11 20:14:39 [main] WARN  org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 59e5b03b-6968-4f56-8b5a-7c3fb14b6f8b
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-05-11 20:14:39 [main] INFO  org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name inMemoryUserDetailsManager
+2026-05-11 20:14:39 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-05-11 20:14:39 [main] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-05-11 20:14:39 [main] INFO  com.juaracoding.pcmspringboot31.Pcmspringboot31Application - Started Pcmspringboot31Application in 9.018 seconds (process running for 12.063)
+2026-05-11 20:15:37 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-05-11 20:15:37 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-05-11 20:15:37 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-05-11 20:22:58 [SpringApplicationShutdownHook] INFO  org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-05-11 20:22:58 [tomcat-shutdown] INFO  org.springframework.boot.web.embedded.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-05-11 20:22:58 [SpringApplicationShutdownHook] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-05-11 20:22:58 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-05-11 20:22:58 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -69,7 +70,13 @@ public class GlobalHandlerException extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleNullPointer(NullPointerException e, HttpServletRequest request) {
         LoggingFile.logException(this.getClass().getName(),"handleNullPointer",e);
         return new ResponseHandler().handleResponse("Proses Gagal",
-                HttpStatus.INTERNAL_SERVER_ERROR,null,"X01003",request);
+                HttpStatus.INTERNAL_SERVER_ERROR,null,"X01004",request);
+    }
+    @ExceptionHandler(value = UsernameNotFoundException.class)
+    protected ResponseEntity<Object> handleUsernameNotFound(UsernameNotFoundException e, HttpServletRequest request) {
+        LoggingFile.logException(this.getClass().getName(),"handleUsernameNotFound",e);
+        return new ResponseHandler().handleResponse(e.getMessage(),
+                HttpStatus.INTERNAL_SERVER_ERROR,null,"X02001",request);
     }
     @ExceptionHandler(value = Exception.class)
     protected ResponseEntity<Object> handleException(Exception e, HttpServletRequest request) {

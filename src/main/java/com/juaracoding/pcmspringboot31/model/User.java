@@ -5,8 +5,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Comment;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Collection;
 import java.util.List;
 
 @Setter
@@ -14,7 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "MstUser",schema = "projectz")
 @Comment("Tabel ini merupakan tabel informasi user dari aplikasi ini")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements UserDetails {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdAkses",nullable = false,foreignKey = @ForeignKey(name = "FK_User_Akses"))
     private Akses akses;
@@ -42,5 +46,10 @@ public class User extends BaseEntity {
     public String getUmur() {
 //        return Period.between(tanggalLahir,LocalDate.now()).getYears() + " Tahun";
         return tanggalLahir==null?"":Period.between(tanggalLahir,LocalDate.now()).getYears() + " Tahun";
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of();
     }
 }

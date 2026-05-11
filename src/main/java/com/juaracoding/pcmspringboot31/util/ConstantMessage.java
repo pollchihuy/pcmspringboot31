@@ -20,6 +20,9 @@ public class ConstantMessage {
     public static final String NOT_FOUND = "Data tidak ditemukan";
     public static final String MUST_EXCEL = "Format File Harus Excel";
 
+    /** AUTH MESSAGE */
+    public static final String FAILED_REGIS = "Registrasi Gagal";
+    public static final String SUCCESS_REGIS = "Registrasi Berhasil";
 
 
 }

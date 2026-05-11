@@ -53,13 +53,13 @@ public class Crypto {
     }
 
     public static void main(String[] args) {
-        String strToEncrypt = "password";//put text to encrypt in here
+        String strToEncrypt = "8439cd08a17d69";//put text to encrypt in here
         System.out.println("Encryption Result : "+performEncrypt(strToEncrypt));
 //        e84b3efac0261a03fff0c5182c725421fca147c61a2530b148ed6cbcabf727df4c99eb129046ef3ec6d7d3eafdfb47413abcc8cd85318145d99908aafe7f4b0db594c3a51aa6675b6af17f83ba3b3d59bace672d05bd6d91a2ac30bf56bab411
 //        e84b3efac0261a03fff0c5182c725421fca147c61a2530b148ed6cbcabf727df4c99eb129046ef3ec6d7d3eafdfb47413abcc8cd85318145d99908aafe7f4b0db594c3a51aa6675b6af17f83ba3b3d59bace672d05bd6d91a2ac30bf56bab411
 //        316c88341c7e9dcabeec24b37951436f9627a8c27db32c966bd388124006c0004d1a2fec8a916a31db5adb5d1d46bcfcfbe1958d21e0057296aebe64bc43fb95428abfa97d30a4ad0dc4a029c5bdbd7b82ea3531d3c39ce7b288e0dea6afeddc
 //        jdbc:sqlserver://java-be-1:3377;databaseName=BEB24;schema=dbproject;trustServerCertificate=true
-        String strToDecrypt = "e84b3efac0261a03fff0c5182c725421fca147c61a2530b148ed6cbcabf727df4c99eb129046ef3ec6d7d3eafdfb47413abcc8cd85318145d99908aafe7f4b0db594c3a51aa6675b6af17f83ba3b3d59bace672d05bd6d91a2ac30bf56bab411";//put text to decrypt in here
+        String strToDecrypt = "d0bee5c0f4cfe12fbd7a00da6a4d3997";//put text to decrypt in here
         System.out.println("Decryption Result : "+performDecrypt(strToDecrypt));
     }
 }
