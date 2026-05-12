@@ -9,17 +9,17 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Data
-@Component
 public class LoginDTO {
 
     @NotNull(message = ConstantMessage.NOT_NULL)
     @NotBlank(message = ConstantMessage.NOT_BLANK)
     @NotEmpty(message = ConstantMessage.NOT_EMPTY)
-    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Username must be a valid email address")
+//    @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Username must be a valid email address")
     private String username;
     @NotNull(message = ConstantMessage.NOT_NULL)
     @NotBlank(message = ConstantMessage.NOT_BLANK)
     @NotEmpty(message = ConstantMessage.NOT_EMPTY)
-    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Password must be at least 8 characters long and contain both letters and numbers")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[@_#\\-$])[\\w].{8,15}$",
+            message = "Format minimal 1 angka, 1 huruf kecil, 1 huruf besar, 1 spesial karakter (_ \"Underscore\", - \"Hyphen\", # \"Hash\", atau $ \"Dollar\" atau @ \"At\") setelah 4 kondisi min 9 max 16 alfanumerik, contoh : aB4$12345")
     private String password;
 }

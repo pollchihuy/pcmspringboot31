@@ -42,6 +42,8 @@ public class User extends BaseEntity implements UserDetails {
     private String umur;
     @OneToMany(mappedBy = "userx")
     private List<MultiData> multiData;
+    @Column(name = "IsRegistered",nullable = false)
+    private Boolean isRegistered=false;
 
     public String getUmur() {
 //        return Period.between(tanggalLahir,LocalDate.now()).getYears() + " Tahun";

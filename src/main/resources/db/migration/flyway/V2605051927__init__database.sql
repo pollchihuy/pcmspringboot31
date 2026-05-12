@@ -85,6 +85,7 @@ CREATE TABLE projectz.MstUser
     UpdatedAt    datetime,
     DeletedBy    varchar(255),
     DeletedAt    datetime,
+    IsRegistered bit                    NOT NULL,
     CONSTRAINT pk_mstuser PRIMARY KEY (Id)
 )
 GO

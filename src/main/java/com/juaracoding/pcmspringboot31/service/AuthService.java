@@ -1,11 +1,20 @@
 package com.juaracoding.pcmspringboot31.service;
 
+import com.juaracoding.pcmspringboot31.config.JwtConfig;
+import com.juaracoding.pcmspringboot31.config.OtherConfig;
+import com.juaracoding.pcmspringboot31.core.SMTPCore;
 import com.juaracoding.pcmspringboot31.dto.validation.LoginDTO;
 import com.juaracoding.pcmspringboot31.dto.validation.RegisDTO;
+import com.juaracoding.pcmspringboot31.dto.validation.VerifyRegisDTO;
 import com.juaracoding.pcmspringboot31.handler.ResponseHandler;
+import com.juaracoding.pcmspringboot31.model.Akses;
 import com.juaracoding.pcmspringboot31.model.User;
 import com.juaracoding.pcmspringboot31.repo.UserRepo;
+import com.juaracoding.pcmspringboot31.security.BcryptImpl;
+import com.juaracoding.pcmspringboot31.security.CryptoJwt;
+import com.juaracoding.pcmspringboot31.security.JwtUtility;
 import com.juaracoding.pcmspringboot31.util.ConstantMessage;
+import com.juaracoding.pcmspringboot31.util.EmailTemplate;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
@@ -16,7 +25,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * modul code : 00
@@ -25,12 +38,17 @@ import java.util.Optional;
 @Transactional
 public class AuthService implements UserDetailsService {
 
-
     @Autowired
     private UserRepo userRepo;
 
     @Autowired
+    private Random random;
+
+    @Autowired
     private ModelMapper modelMapper ;
+
+    @Autowired
+    private JwtUtility jwtUtility;
     /**
      * Login
      * Regis
@@ -45,9 +63,86 @@ public class AuthService implements UserDetailsService {
     /**
      *
      */
+     String otp = String.valueOf(random.nextInt(10))+String.valueOf(random.nextInt(10000,99999));
+     user.setOtp(BcryptImpl.hash(user.getUsername()+otp));
+     user.setPassword(BcryptImpl.hash(user.getUsername()+user.getPassword()));
+     user.setIsRegistered(false);
+     user.setCreatedBy("{\"id\":\"1\",\"nama\":\"System\"}");
+     Akses akses = new Akses();
+     akses.setId(2L);
+     user.setAkses(akses);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                new SMTPCore().sendMailWithAttachment(new String[]{user.getEmail()},
+                        "OTP Registrasi",
+                        EmailTemplate.sentOtp(user.getNamaLengkap(),"Registrasi",otp),
+                        "TLS",null);
+            }
+        }).start();
         userRepo.save(user);
+        Map<String,Object> mapResponse = new HashMap<>();
+        mapResponse.put("email",user.getEmail());
+        if(OtherConfig.getEnableAutomationTesting().equals("y")){
+            mapResponse.put("otp",otp);
+        }
         return new ResponseHandler().
-                handleResponse(ConstantMessage.SUCCESS_SAVE, HttpStatus.CREATED,null,null,request);
+                handleResponse(ConstantMessage.SUCCESS_SAVE, HttpStatus.CREATED,mapResponse,null,request);
+    }
+    public ResponseEntity<Object> verifyRegis(User user, HttpServletRequest request){
+        if(user==null){
+            return new ResponseHandler().
+                    handleResponse(ConstantMessage.FAILED_REGIS, HttpStatus.BAD_REQUEST,null,"USM00021",request);
+        }
+        Optional<User> optionalUser = userRepo.findByEmail(user.getEmail());
+        if(optionalUser.isEmpty()){
+            throw new UsernameNotFoundException(ConstantMessage.USER_NOT_FOUND);
+        }
+
+        User userDB = optionalUser.get();
+        if(!BcryptImpl.verifyHash(userDB.getUsername()+user.getOtp(),userDB.getOtp())){
+            return new ResponseHandler().
+                    handleResponse(ConstantMessage.OTP_SALAH, HttpStatus.BAD_REQUEST,null,"USM00022",request);
+        }
+        userDB.setIsRegistered(true);
+        userDB.setOtp("123");
+        userDB.setUpdatedBy("{\"id\":\""+userDB.getId()+"\",\"nama\":\""+userDB.getNamaLengkap()+"\"}");
+        return new ResponseHandler().
+                handleResponse(ConstantMessage.SUCCESS_REGIS, HttpStatus.OK,null,null,request);
+    }
+    public ResponseEntity<Object> login(User user, HttpServletRequest request){
+        if(user==null){
+            return new ResponseHandler().
+                    handleResponse(ConstantMessage.FAILED_REGIS, HttpStatus.BAD_REQUEST,null,"USM00021",request);
+        }
+        Optional<User> optionalUser = userRepo.findByUsernameOrEmailOrNoHp(user.getUsername(),user.getUsername(),user.getUsername());
+        if(optionalUser.isEmpty()){
+            throw new UsernameNotFoundException(ConstantMessage.USER_PWD_SALAH);
+        }
+        User userDb = optionalUser.get();
+        if(!BcryptImpl.verifyHash(userDb.getUsername()+user.getPassword(),userDb.getPassword())){
+            throw new UsernameNotFoundException(ConstantMessage.USER_PWD_SALAH);
+        }
+
+        /** PAYLOAD */
+        Map<String,Object> claims = new HashMap<>();
+        claims.put("id",userDb.getId());
+        claims.put("na_leng",userDb.getNamaLengkap());
+        claims.put("akses",userDb.getAkses().getNama());
+        claims.put("email",userDb.getEmail());
+        claims.put("no_hp",userDb.getNoHp());
+
+        String token = jwtUtility.doGenerateToken(claims,userDb.getUsername());
+        if(JwtConfig.getTokenEncryptEnable().equals("y")){
+            token = CryptoJwt.performEncrypt(token);
+        }
+
+        Map<String,Object> mapResponse = new HashMap<>();
+        mapResponse.put("menu","SOON");
+        mapResponse.put("token",token);
+
+        return new ResponseHandler().
+                handleResponse(ConstantMessage.SUCCESS_LOGIN, HttpStatus.OK,mapResponse,null,request);
     }
 
     /**
@@ -68,6 +163,9 @@ public class AuthService implements UserDetailsService {
 
     public User mapToEntity(RegisDTO regisDTO){
         return modelMapper.map(regisDTO,User.class);
+    }
+    public User mapToEntity(VerifyRegisDTO verifyRegisDTO){
+        return modelMapper.map(verifyRegisDTO,User.class);
     }
     public User mapToEntity(LoginDTO loginDTO){
         return modelMapper.map(loginDTO,User.class);

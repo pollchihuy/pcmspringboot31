@@ -36,7 +36,7 @@ public class BcryptImpl {
         //Paul@123
         //Login : usrname = ari.321 , password = Paul@123
         //ari.321Paul@123
-        System.out.println(hash("ari.321Ari@123"));//imutable
+        System.out.println(hash("admin.123Admin@123"));//imutable
         System.out.println(verifyHash("121314","$2a$11$TBHtMb0FBb0MQ4hwgL8lqOn396mxPiQr3xy7XmPsIirLmqTUUEKGm"));
         System.out.println(verifyHash("paul123","$2a$11$h/TQXqKdlsLowqDRStSFLOjSfmApP91M4uD/.I5Gjnfm09qdKtolO"));
         System.out.println(verifyHash("paul123","$2a$11$mlvIAKRT9IKonDZgAS0CEuDwWtTdcERZAygZTPDWwQV.bJHLrmvIi"));

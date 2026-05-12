@@ -15,8 +15,8 @@ import java.util.Random;
 @RequestMapping("api/hello")
 public class HelloController {
 
-    @Autowired
-    private LoginDTO loginDTO;//IOC Inversion Of Control
+//    @Autowired
+//    private LoginDTO loginDTO;//IOC Inversion Of Control
 
     @Autowired
     private UserServices userServices;
@@ -36,16 +36,16 @@ public class HelloController {
 //        return new LoginDTO();
     }
 
-    @GetMapping("/di")
-    public Object dependencyInjection() {
-        loginDTO.setUsername("paul123");
-        loginDTO.setPassword("Paul@1234");
-        System.out.println("Random number: " + random.nextInt(100));
-        System.out.println("Base Url : " + baseUrl);
-        System.out.println("Gurita Config Name : " + guritaConfig.getName());
-        System.out.println("Gurita Config Price : " + guritaConfig.getPrice());
-        return loginDTO;
-    }
+//    @GetMapping("/di")
+//    public Object dependencyInjection() {
+//        loginDTO.setUsername("paul123");
+//        loginDTO.setPassword("Paul@1234");
+//        System.out.println("Random number: " + random.nextInt(100));
+//        System.out.println("Base Url : " + baseUrl);
+//        System.out.println("Gurita Config Name : " + guritaConfig.getName());
+//        System.out.println("Gurita Config Price : " + guritaConfig.getPrice());
+//        return loginDTO;
+//    }
 
     //localhost:8080/api/hello
     @PostMapping

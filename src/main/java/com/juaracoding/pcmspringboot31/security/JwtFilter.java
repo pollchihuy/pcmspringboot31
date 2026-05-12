@@ -48,6 +48,7 @@ public class JwtFilter extends OncePerRequestFilter {
                     authorization.startsWith("Bearer ") &&
                     authorization.length() > 7){
                 token = authorization.substring(7);
+
                 if(JwtConfig.getTokenEncryptEnable().equals("y")){
                     token = Crypto.performDecrypt(token);
                 }

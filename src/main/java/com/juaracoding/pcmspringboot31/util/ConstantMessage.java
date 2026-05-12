@@ -22,7 +22,9 @@ public class ConstantMessage {
 
     /** AUTH MESSAGE */
     public static final String FAILED_REGIS = "Registrasi Gagal";
+    public static final String USER_PWD_SALAH = "Username atau Password Salah";
+    public static final String OTP_SALAH = "OTP Salah";
+    public static final String USER_NOT_FOUND = "User Tidak Ditemukan";
     public static final String SUCCESS_REGIS = "Registrasi Berhasil";
-
-
+    public static final String SUCCESS_LOGIN = "Login Berhasil";
 }

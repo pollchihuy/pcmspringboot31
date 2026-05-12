@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,11 +27,13 @@ public class MenuController {
     private MenuService menuService;
 
     @PostMapping("/v1")
+    @PreAuthorize("hasAuthority('1i')")
     public ResponseEntity<Object> save(@Valid @RequestBody ValMenuDTO valMenuDTO, HttpServletRequest request) {
         return menuService.save(menuService.mapperToEntity(valMenuDTO),request);
     }
 
     @PutMapping("/v1/{id}")
+    @PreAuthorize("hasAuthority('1u')")
     public ResponseEntity<Object> update(
             @PathVariable Long id,
             @Valid @RequestBody ValMenuDTO valMenuDTO, HttpServletRequest request) {
@@ -38,6 +41,7 @@ public class MenuController {
     }
 
     @DeleteMapping("/v1/{id}")
+    @PreAuthorize("hasAuthority('1d')")
     public ResponseEntity<Object> delete(
             @PathVariable Long id,
             HttpServletRequest request) {
@@ -45,7 +49,8 @@ public class MenuController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> delete(
+    @PreAuthorize("hasAuthority('1v')")
+    public ResponseEntity<Object> findAll(
             HttpServletRequest request) {
         Pageable pageable = PageRequest.of(0, OtherConfig.getDefaultPaginationSize(), Sort.by("id"));
 
@@ -54,6 +59,7 @@ public class MenuController {
 
 
     @PostMapping("/v1/{sort}/{sort_by}/{page}")
+    @PreAuthorize("hasAuthority('1v')")
     public ResponseEntity<Object> search(
             @PathVariable String sort,
             @PathVariable(value = "sort_by") String sortBy,
@@ -73,6 +79,7 @@ public class MenuController {
     }
 
     @PostMapping("/v1/upload")
+    @PreAuthorize("hasAuthority('1i')")
     public ResponseEntity<Object> uploadExcel(
             @RequestParam MultipartFile file,
             HttpServletRequest request) throws IOException {
@@ -81,6 +88,7 @@ public class MenuController {
     }
 
     @PostMapping("/v1/excel")
+    @PreAuthorize("hasAuthority('1p')")
     public void downloadExcel(
             @RequestBody SearchMenuDTO searchMenuDTO,
             HttpServletRequest request,
@@ -89,6 +97,7 @@ public class MenuController {
     }
 
     @PostMapping("/v1/pdf")
+    @PreAuthorize("hasAuthority('1p')")
     public void downloadPdf(
             @RequestBody SearchMenuDTO searchMenuDTO,
             HttpServletRequest request,

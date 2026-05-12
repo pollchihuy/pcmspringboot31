@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,11 +22,13 @@ public class AksesController {
     private AksesService aksesService;
 
     @PostMapping("/v1")
+    @PreAuthorize("hasAuthority('2i')")
     public ResponseEntity<Object> save(@Valid @RequestBody ValAksesDTO valAksesDTO, HttpServletRequest request) {
         return aksesService.save(aksesService.mapperToEntity(valAksesDTO),request);
     }
 
     @PutMapping("/v1/{id}")
+    @PreAuthorize("hasAuthority('2u')")
     public ResponseEntity<Object> update(
             @PathVariable Long id,
             @Valid @RequestBody ValAksesDTO valAksesDTO, HttpServletRequest request) {
@@ -33,6 +36,7 @@ public class AksesController {
     }
 
     @DeleteMapping("/v1/{id}")
+    @PreAuthorize("hasAuthority('2d')")
     public ResponseEntity<Object> delete(
             @PathVariable Long id,
             HttpServletRequest request) {
@@ -40,7 +44,8 @@ public class AksesController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> delete(
+    @PreAuthorize("hasAuthority('2v')")
+    public ResponseEntity<Object> findAll(
             HttpServletRequest request) {
         Pageable pageable = PageRequest.of(0, OtherConfig.getDefaultPaginationSize(), Sort.by("id"));
 
@@ -49,6 +54,7 @@ public class AksesController {
 
 
     @PostMapping("/v1/{sort}/{sort_by}/{page}")
+    @PreAuthorize("hasAuthority('2v')")
     public ResponseEntity<Object> search(
             @PathVariable String sort,
             @PathVariable(value = "sort_by") String sortBy,
