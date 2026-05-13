@@ -47,28 +47,28 @@ public class MainConfig{
     @Bean
     public ModelMapper getModelMapper(){
         ModelMapper modelMapper = new ModelMapper();
-        // 1. Ubah Matching Strategy ke STRICT agar 'menuId' tidak salah masuk ke 'id'
-        modelMapper.getConfiguration().setMatchingStrategy(org.modelmapper.convention.MatchingStrategies.STRICT);
-        modelMapper.getConfiguration().setAmbiguityIgnored(true);
-
-        // 2. Buat Converter sederhana dari Long menjadi Menu
-        Converter<Long, Menu> longToMenuConverter = new AbstractConverter<Long, Menu>() {
-            @Override
-            protected Menu convert(Long sourceId) {
-                if (sourceId == null) {
-                    return null;
-                }
-                Menu m = new Menu();
-                m.setId(sourceId);
-                return m;
-            }
-        };
-        // 3. Daftarkan Converter secara global
-        modelMapper.addConverter(longToMenuConverter);
-        // 4. Beritahu ModelMapper untuk memetakan menuId ke menus
-        modelMapper.typeMap(ValAksesDTO.class, Akses.class).addMappings(mapper -> {
-            mapper.map(ValAksesDTO::getMenuId, Akses::setMenus);
-        });
+//        // 1. Ubah Matching Strategy ke STRICT agar 'menuId' tidak salah masuk ke 'id'
+//        modelMapper.getConfiguration().setMatchingStrategy(org.modelmapper.convention.MatchingStrategies.STRICT);
+//        modelMapper.getConfiguration().setAmbiguityIgnored(true);
+//
+//        // 2. Buat Converter sederhana dari Long menjadi Menu
+//        Converter<Long, Menu> longToMenuConverter = new AbstractConverter<Long, Menu>() {
+//            @Override
+//            protected Menu convert(Long sourceId) {
+//                if (sourceId == null) {
+//                    return null;
+//                }
+//                Menu m = new Menu();
+//                m.setId(sourceId);
+//                return m;
+//            }
+//        };
+//        // 3. Daftarkan Converter secara global
+//        modelMapper.addConverter(longToMenuConverter);
+//        // 4. Beritahu ModelMapper untuk memetakan menuId ke menus
+//        modelMapper.typeMap(ValAksesDTO.class, Akses.class).addMappings(mapper -> {
+//            mapper.map(ValAksesDTO::getMenuId, Akses::setMenus);
+//        });
 
         return modelMapper;
     }

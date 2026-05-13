@@ -47,14 +47,20 @@ GO
 -- ----------------------------
 -- Records of AksesMenu
 -- ----------------------------
-INSERT INTO [projectz].[AksesMenu] ([IdAkses], [IdMenu]) VALUES (N'1', N'1')
+SET IDENTITY_INSERT [projectz].[AksesMenu] ON
 GO
 
-INSERT INTO [projectz].[AksesMenu] ([IdAkses], [IdMenu]) VALUES (N'1', N'2')
+INSERT INTO [projectz].[AksesMenu] ([Id], [IdAkses], [IdMenu], [CanInsert], [CanUpdate], [CanDelete], [CanView], [CanPrint], [CreatedBy], [CreatedAt], [UpdatedBy], [UpdatedAt], [DeletedBy], [DeletedAt]) VALUES (N'1', N'1', N'1', N'1', N'1', N'1', N'1', N'1', N'{"id":"1","nama":"System"}', N'2026-05-13 15:06:20.000', NULL, NULL, NULL, NULL)
 GO
 
-INSERT INTO [projectz].[AksesMenu] ([IdAkses], [IdMenu]) VALUES (N'1', N'3')
+INSERT INTO [projectz].[AksesMenu] ([Id], [IdAkses], [IdMenu], [CanInsert], [CanUpdate], [CanDelete], [CanView], [CanPrint], [CreatedBy], [CreatedAt], [UpdatedBy], [UpdatedAt], [DeletedBy], [DeletedAt]) VALUES (N'2', N'1', N'2', N'1', N'1', N'1', N'1', N'1', N'{"id":"1","nama":"System"}', N'2026-05-13 15:06:39.000', NULL, NULL, NULL, NULL)
 GO
 
-INSERT INTO [projectz].[AksesMenu] ([IdAkses], [IdMenu]) VALUES (N'2', N'3')
+INSERT INTO [projectz].[AksesMenu] ([Id], [IdAkses], [IdMenu], [CanInsert], [CanUpdate], [CanDelete], [CanView], [CanPrint], [CreatedBy], [CreatedAt], [UpdatedBy], [UpdatedAt], [DeletedBy], [DeletedAt]) VALUES (N'3', N'1', N'3', N'1', N'1', N'1', N'1', N'1', N'{"id":"1","nama":"System"}', N'2026-05-13 15:06:54.000', NULL, NULL, NULL, NULL)
+GO
+
+INSERT INTO [projectz].[AksesMenu] ([Id], [IdAkses], [IdMenu], [CanInsert], [CanUpdate], [CanDelete], [CanView], [CanPrint], [CreatedBy], [CreatedAt], [UpdatedBy], [UpdatedAt], [DeletedBy], [DeletedAt]) VALUES (N'4', N'2', N'1', N'1', N'1', N'1', N'1', N'1', N'{"id":"1","nama":"System"}', N'2026-05-13 15:07:13.000', NULL, NULL, NULL, NULL)
+GO
+
+SET IDENTITY_INSERT [projectz].[AksesMenu] OFF
 GO

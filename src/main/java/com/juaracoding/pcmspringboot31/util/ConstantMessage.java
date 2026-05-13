@@ -27,4 +27,6 @@ public class ConstantMessage {
     public static final String USER_NOT_FOUND = "User Tidak Ditemukan";
     public static final String SUCCESS_REGIS = "Registrasi Berhasil";
     public static final String SUCCESS_LOGIN = "Login Berhasil";
+    public static final String ERROR_AUTH = "Otentikasi Bermasalah";
+
 }

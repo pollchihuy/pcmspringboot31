@@ -1,7 +1,20 @@
 CREATE TABLE projectz.AksesMenu
 (
-    IdAkses bigint NOT NULL,
-    IdMenu  bigint NOT NULL
+    Id        bigint IDENTITY (1, 1) NOT NULL,
+    IdAkses   bigint                 NOT NULL,
+    IdMenu    bigint                 NOT NULL,
+    CanInsert bit,
+    CanUpdate bit,
+    CanDelete bit,
+    CanView   bit,
+    CanPrint  bit,
+    CreatedBy varchar(255)           NOT NULL,
+    CreatedAt datetime               NOT NULL,
+    UpdatedBy varchar(255),
+    UpdatedAt datetime,
+    DeletedBy varchar(255),
+    DeletedAt datetime,
+    CONSTRAINT pk_aksesmenu PRIMARY KEY (Id)
 )
 GO
 
@@ -148,22 +161,22 @@ GO
 CREATE TABLE projectz.MultiData
 (
     Id        bigint IDENTITY (1, 1) NOT NULL,
-    IdUser    bigint                 NOT NULL,
-    Data      varchar(20)            NOT NULL,
-    Deskripsi varchar(255)           NOT NULL,
-    Tambah    varchar(255),
     CreatedBy varchar(255)           NOT NULL,
     CreatedAt datetime               NOT NULL,
     UpdatedBy varchar(255),
     UpdatedAt datetime,
     DeletedBy varchar(255),
     DeletedAt datetime,
+    IdUser    bigint                 NOT NULL,
+    Data      varchar(20)            NOT NULL,
+    Deskripsi varchar(255)           NOT NULL,
+    Tambah    varchar(255),
     CONSTRAINT pk_multidata PRIMARY KEY (Id)
 )
 GO
 
 ALTER TABLE projectz.AksesMenu
-    ADD CONSTRAINT Unq_Akses_Menu UNIQUE (IdAkses, IdMenu)
+    ADD CONSTRAINT UNQ_AksesMenu_IdAkses_IdMenu UNIQUE (IdAkses, IdMenu)
 GO
 
 ALTER TABLE projectz.MstAkses
@@ -191,11 +204,11 @@ ALTER TABLE projectz.MstUser
 GO
 
 ALTER TABLE projectz.AksesMenu
-    ADD CONSTRAINT FK_AksesMenu_Akses FOREIGN KEY (IdAkses) REFERENCES projectz.MstAkses (Id)
+    ADD CONSTRAINT FK_AKSESMENU_AKSES FOREIGN KEY (IdAkses) REFERENCES projectz.MstAkses (Id)
 GO
 
 ALTER TABLE projectz.AksesMenu
-    ADD CONSTRAINT FK_AksesMenu_AkseszKC5Ed FOREIGN KEY (IdMenu) REFERENCES projectz.MstMenu (Id)
+    ADD CONSTRAINT FK_AKSESMENU_MENU FOREIGN KEY (IdMenu) REFERENCES projectz.MstMenu (Id)
 GO
 
 ALTER TABLE projectz.MultiData

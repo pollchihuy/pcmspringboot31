@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -77,6 +78,12 @@ public class GlobalHandlerException extends ResponseEntityExceptionHandler {
         LoggingFile.logException(this.getClass().getName(),"handleUsernameNotFound",e);
         return new ResponseHandler().handleResponse(e.getMessage(),
                 HttpStatus.INTERNAL_SERVER_ERROR,null,"X02001",request);
+    }
+    @ExceptionHandler(value = AccessDeniedException.class)
+    protected ResponseEntity<Object> handleAccessDenied(AccessDeniedException e, HttpServletRequest request) {
+        LoggingFile.logException(this.getClass().getName(),"handleAccessDenied",e);
+        return new ResponseHandler().handleResponse(e.getMessage(),
+                HttpStatus.FORBIDDEN,null,"X02002",request);
     }
     @ExceptionHandler(value = Exception.class)
     protected ResponseEntity<Object> handleException(Exception e, HttpServletRequest request) {

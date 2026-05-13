@@ -24,7 +24,7 @@ public class AksesController {
     @PostMapping("/v1")
     @PreAuthorize("hasAuthority('2i')")
     public ResponseEntity<Object> save(@Valid @RequestBody ValAksesDTO valAksesDTO, HttpServletRequest request) {
-        return aksesService.save(aksesService.mapperToEntity(valAksesDTO),request);
+        return aksesService.save(aksesService.mapToEntity(valAksesDTO),request);
     }
 
     @PutMapping("/v1/{id}")
@@ -32,7 +32,7 @@ public class AksesController {
     public ResponseEntity<Object> update(
             @PathVariable Long id,
             @Valid @RequestBody ValAksesDTO valAksesDTO, HttpServletRequest request) {
-        return aksesService.update(id,aksesService.mapperToEntity(valAksesDTO),request);
+        return aksesService.update(id,aksesService.mapToEntity(valAksesDTO),request);
     }
 
     @DeleteMapping("/v1/{id}")

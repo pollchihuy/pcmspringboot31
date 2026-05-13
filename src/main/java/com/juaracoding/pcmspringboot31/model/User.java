@@ -6,12 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Comment;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -50,8 +53,30 @@ public class User extends BaseEntity implements UserDetails {
         return tanggalLahir==null?"":Period.between(tanggalLahir,LocalDate.now()).getYears() + " Tahun";
     }
 
+    /** RWX READ WRITE EXECUTION */
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        List<AksesMenu> aksesMap = this.akses.getAksesMenuList();
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+//        grantedAuthorities.add(new SimpleGrantedAuthority(akses.getNama()));
+        for (AksesMenu aksesMenu : aksesMap) {
+            if(Boolean.TRUE.equals(aksesMenu.getCanInsert())){
+                grantedAuthorities.add(new SimpleGrantedAuthority(aksesMenu.getMenu().getId()+"i"));
+            }
+            if(Boolean.TRUE.equals(aksesMenu.getCanUpdate())){
+                grantedAuthorities.add(new SimpleGrantedAuthority(aksesMenu.getMenu().getId()+"u"));
+            }
+            if(Boolean.TRUE.equals(aksesMenu.getCanDelete())){
+                grantedAuthorities.add(new SimpleGrantedAuthority(aksesMenu.getMenu().getId()+"d"));
+            }
+            if(Boolean.TRUE.equals(aksesMenu.getCanView())){
+                grantedAuthorities.add(new SimpleGrantedAuthority(aksesMenu.getMenu().getId()+"v"));
+            }
+            if(Boolean.TRUE.equals(aksesMenu.getCanPrint())){
+                grantedAuthorities.add(new SimpleGrantedAuthority(aksesMenu.getMenu().getId()+"p"));
+            }
+        }
+        System.out.println("otorisasi : "+grantedAuthorities);
+        return grantedAuthorities;
     }
 }

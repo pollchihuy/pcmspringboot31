@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -15,14 +16,10 @@ import java.util.List;
 @Table(name = "MstAkses",schema = "projectz")
 @DynamicUpdate
 public class Akses extends BaseEntity {
-    @Column(name = "NamaAkses",length = 20, nullable = false, unique = true)
+    @Column(name = "NamaAkses", length = 20, nullable = false, unique = true)
     private String nama;
     @Column(name = "Deskripsi", nullable = false)
     private String deskripsi;
-    @ManyToMany
-    @JoinTable(name = "AksesMenu",uniqueConstraints = @UniqueConstraint(name = "Unq_Akses_Menu", columnNames = {"IdAkses","IdMenu"}),
-    joinColumns = @JoinColumn(name = "IdAkses",nullable = false,foreignKey = @ForeignKey(name = "FK_AksesMenu_Akses")),
-    inverseJoinColumns = @JoinColumn(name = "IdMenu",nullable = false,foreignKey = @ForeignKey(name = "FK_AksesMenu_Menu"))
-    )
-    private List<Menu> menus;
+    @OneToMany(mappedBy = "akses", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AksesMenu> aksesMenuList;
 }

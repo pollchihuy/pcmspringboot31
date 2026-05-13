@@ -153,7 +153,7 @@ public class AuthService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional = userRepo.findByUsername(username);
+        Optional<User> userOptional = userRepo.findByUsernameWithAkses(username);
         if(userOptional.isEmpty()){
             throw new UsernameNotFoundException("User Tidak Ditemukan");
         }

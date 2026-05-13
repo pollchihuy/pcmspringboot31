@@ -53,7 +53,6 @@ public class MenuController {
     public ResponseEntity<Object> findAll(
             HttpServletRequest request) {
         Pageable pageable = PageRequest.of(0, OtherConfig.getDefaultPaginationSize(), Sort.by("id"));
-
         return menuService.findAll(pageable,request);
     }
 

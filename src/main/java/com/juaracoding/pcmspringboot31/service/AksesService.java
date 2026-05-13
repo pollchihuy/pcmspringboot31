@@ -8,7 +8,9 @@ import com.juaracoding.pcmspringboot31.dto.report.ReportAksesDTO;
 import com.juaracoding.pcmspringboot31.dto.validation.ValAksesDTO;
 import com.juaracoding.pcmspringboot31.handler.ResponseHandler;
 import com.juaracoding.pcmspringboot31.model.Akses;
+import com.juaracoding.pcmspringboot31.model.AksesMenu;
 import com.juaracoding.pcmspringboot31.model.Menu;
+import com.juaracoding.pcmspringboot31.repo.AksesMenuRepo;
 import com.juaracoding.pcmspringboot31.repo.AksesRepo;
 import com.juaracoding.pcmspringboot31.specification.AksesSpecification;
 import com.juaracoding.pcmspringboot31.util.*;
@@ -49,7 +51,23 @@ public class AksesService implements IServiceDML<Akses>, IServiceQuery<SearchAks
             return new ResponseHandler().
                     handleResponse(ConstantMessage.FAILED_SAVE, HttpStatus.BAD_REQUEST,null,"USM01001",request);
         }
-        akses.setCreatedBy("{\"id\":\"1\",\"nama\":\"System\"}");
+        // 1. Definisikan informasi user (biasanya didapat dari Token/Session/SecurityContext)
+        String currentUser = "{\"id\":\"1\",\"nama\":\"System\"}";
+        // 2. Set CreatedBy untuk Parent (Akses)
+        akses.setCreatedBy(currentUser);
+
+        // 3. Modifikasi: Inject info ke Child (AksesMenu)
+        if (akses.getAksesMenuList() != null) {
+            for (AksesMenu am : akses.getAksesMenuList()) {
+                // Inject CreatedBy untuk child
+                am.setCreatedBy(currentUser);
+
+                // PENTING: Karena Anda pakai ModelMapper, mapping DTO ke Entity
+                // seringkali membuat child tidak tahu siapa parent-nya.
+                // Kita ikat kembali parent-nya di sini.
+                am.setAkses(akses);
+            }
+        }
         aksesRepo.save(akses);
         return new ResponseHandler().
                 handleResponse(ConstantMessage.SUCCESS_SAVE, HttpStatus.CREATED,null,null,request);
@@ -72,10 +90,26 @@ public class AksesService implements IServiceDML<Akses>, IServiceQuery<SearchAks
                 return new ResponseHandler().
                         handleResponse(ConstantMessage.NOT_FOUND, HttpStatus.NOT_FOUND,null,"USM01013",request);
             }
+            String currentUser = "{\"id\":\"1\",\"nama\":\"System\"}";
             aksesDB.setNama(akses.getNama());//akses -> akses
             aksesDB.setDeskripsi(akses.getDeskripsi());
-            aksesDB.setMenus(akses.getMenus());
-            aksesDB.setUpdatedBy("{\"id\":\"1\",\"nama\":\"System\"}");
+            aksesDB.setUpdatedBy(currentUser);
+            // Update List Menu (Orphan Removal akan menghapus data lama yang tidak ada di list baru)
+            aksesDB.getAksesMenuList().clear(); // Kosongkan list lama
+            /**
+                defaultnya hibenate melakukan query insert terlebih dahulu baru delete
+                sehingga menyebabkan error "Violation of UNIQUE KEY constraint" oleh karena itu kita perlu
+                menambahkan perintah flush agar memaksa Hibernate untuk menembakkan query DELETE ke database SEKARANG JUGA
+             */
+            aksesRepo.flush();
+
+            if (akses.getAksesMenuList() != null) {
+                for(AksesMenu am : akses.getAksesMenuList()){
+                    am.setAkses(aksesDB); // Pastikan parent ID terset ke ID yang sedang diupdate
+                    am.setCreatedBy(currentUser);
+                    aksesDB.getAksesMenuList().add(am);
+                }
+            }
         return new ResponseHandler().
                 handleResponse(ConstantMessage.SUCCESS_UPDATE, HttpStatus.OK,null,null,request);
     }
@@ -159,16 +193,24 @@ public class AksesService implements IServiceDML<Akses>, IServiceQuery<SearchAks
         Akses akses = new Akses();
         akses.setNama(valAksesDTO.getNama());
         akses.setDeskripsi(valAksesDTO.getDeskripsi());
-        /** peralihan dari list long menjadi menu */
-        List<Long> l = valAksesDTO.getMenuId();
-        List<Menu> listMenu = new ArrayList<>();
-        for(Long menuId : l){
-            Menu m = new Menu();
-            m.setId(menuId);
-            listMenu.add(m);
+        List<AksesMenu> listAksesMenu = new ArrayList<>(); // Buat list lokal
+        Integer intSize = valAksesDTO.getAksesMenu().size();
+        if (valAksesDTO.getAksesMenu() != null) {
+            for(int i=0;i<intSize;i++){
+                AksesMenu aksesMenu = new AksesMenu();
+                Menu menu = new Menu();
+                menu.setId(valAksesDTO.getAksesMenu().get(i).getMenu());
+                aksesMenu.setMenu(menu);
+                aksesMenu.setAkses(akses);
+                aksesMenu.setCanInsert(valAksesDTO.getAksesMenu().get(i).getCanInsert());
+                aksesMenu.setCanUpdate(valAksesDTO.getAksesMenu().get(i).getCanUpdate());
+                aksesMenu.setCanDelete(valAksesDTO.getAksesMenu().get(i).getCanDelete());
+                aksesMenu.setCanView(valAksesDTO.getAksesMenu().get(i).getCanView());
+                aksesMenu.setCanPrint(valAksesDTO.getAksesMenu().get(i).getCanPrint());
+                listAksesMenu.add(aksesMenu);
+            }
         }
-        GlobalFunction.print(listMenu);
-        akses.setMenus(listMenu);
+        akses.setAksesMenuList(listAksesMenu);
         return akses;
     }
     public Akses mapperToEntity(ValAksesDTO valAksesDTO){

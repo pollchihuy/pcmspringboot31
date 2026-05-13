@@ -1,6 +1,7 @@
 package com.juaracoding.pcmspringboot31.handler;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.juaracoding.pcmspringboot31.util.ConstantMessage;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -26,18 +27,18 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
                          AuthenticationException authException) throws IOException, ServletException {
         /** Response Header */
         response.setHeader("Content-Type","application/json");
-        int status = response.getStatus();
-        status = status == 200 ? HttpServletResponse.SC_UNAUTHORIZED : HttpServletResponse.SC_FORBIDDEN;
-        /** Response Code */
-        String message = status==401?"Otentikasi Bermasalah":"Otorisasi Bermasalah";
-        response.setStatus(status);
+//        int status = response.getStatus();
+//        status = status == 200 ? HttpServletResponse.SC_UNAUTHORIZED : HttpServletResponse.SC_FORBIDDEN;
+//        /** Response Code */
+//        String message = status==401?"Otentikasi Bermasalah":"Otorisasi Bermasalah";
+        response.setStatus(401);
         /** Response Body */
         Map<String,Object> data = new HashMap<>();
-        data.put("status",status);
+        data.put("status",401);
         data.put("success",false);
-        data.put("error_code","X02099");
+        data.put("error_code","X02002");
         data.put("timestamp", Calendar.getInstance().getTime());
-        data.put("error",message);
+        data.put("error", ConstantMessage.ERROR_AUTH);
         response.getOutputStream().println(objectMapper.writeValueAsString(data));
     }
 }
