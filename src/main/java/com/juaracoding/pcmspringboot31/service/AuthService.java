@@ -3,11 +3,15 @@ package com.juaracoding.pcmspringboot31.service;
 import com.juaracoding.pcmspringboot31.config.JwtConfig;
 import com.juaracoding.pcmspringboot31.config.OtherConfig;
 import com.juaracoding.pcmspringboot31.core.SMTPCore;
+import com.juaracoding.pcmspringboot31.dto.report.ReportAksesDTO;
+import com.juaracoding.pcmspringboot31.dto.report.ReportMenuDTO;
 import com.juaracoding.pcmspringboot31.dto.validation.LoginDTO;
 import com.juaracoding.pcmspringboot31.dto.validation.RegisDTO;
 import com.juaracoding.pcmspringboot31.dto.validation.VerifyRegisDTO;
 import com.juaracoding.pcmspringboot31.handler.ResponseHandler;
 import com.juaracoding.pcmspringboot31.model.Akses;
+import com.juaracoding.pcmspringboot31.model.AksesMenu;
+import com.juaracoding.pcmspringboot31.model.Menu;
 import com.juaracoding.pcmspringboot31.model.User;
 import com.juaracoding.pcmspringboot31.repo.UserRepo;
 import com.juaracoding.pcmspringboot31.security.BcryptImpl;
@@ -18,6 +22,7 @@ import com.juaracoding.pcmspringboot31.util.EmailTemplate;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +31,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 /**
  * modul code : 00
@@ -64,8 +66,11 @@ public class AuthService implements UserDetailsService {
      *
      */
      String otp = String.valueOf(random.nextInt(10))+String.valueOf(random.nextInt(10000,99999));
+//     String otp = "241223";
      user.setOtp(BcryptImpl.hash(user.getUsername()+otp));
      user.setPassword(BcryptImpl.hash(user.getUsername()+user.getPassword()));
+//    user.setOtp(otp);
+//    user.setPassword(user.getPassword());
      user.setIsRegistered(false);
      user.setCreatedBy("{\"id\":\"1\",\"nama\":\"System\"}");
      Akses akses = new Akses();
@@ -136,9 +141,18 @@ public class AuthService implements UserDetailsService {
         if(JwtConfig.getTokenEncryptEnable().equals("y")){
             token = CryptoJwt.performEncrypt(token);
         }
+        List<AksesMenu>  aksesMenus = userDb.getAkses().getAksesMenuList();
+        List<Menu> listMenu =  new ArrayList<>();
+        for( AksesMenu aksesMenu : aksesMenus){
+            Menu m = new Menu();
+            m.setId(aksesMenu.getId());
+            m.setPath(aksesMenu.getMenu().getPath());
+            m.setNama(aksesMenu.getMenu().getNama());
+            listMenu.add(m);
+        }
 
         Map<String,Object> mapResponse = new HashMap<>();
-        mapResponse.put("menu","SOON");
+        mapResponse.put("menu",modelMapper.map(listMenu,new TypeToken<List<ReportMenuDTO>>() {}.getType()));
         mapResponse.put("token",token);
 
         return new ResponseHandler().

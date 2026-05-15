@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Comment;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,7 @@ import java.util.Set;
 @Entity
 @Table(name = "MstUser",schema = "projectz")
 @Comment("Tabel ini merupakan tabel informasi user dari aplikasi ini")
+@DynamicUpdate
 public class User extends BaseEntity implements UserDetails {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdAkses",nullable = false,foreignKey = @ForeignKey(name = "FK_User_Akses"))

@@ -21,10 +21,10 @@ public abstract class BaseEntity {
     @CreationTimestamp
     @Column(name = "CreatedAt",nullable = false, updatable = false)
     private LocalDateTime createdAt;
-    @Column(name = "UpdatedBy")
+    @Column(name = "UpdatedBy",insertable = false)
     private String updatedBy;
     @UpdateTimestamp
-    @Column(name = "UpdatedAt")
+    @Column(name = "UpdatedAt",insertable = false)
     private LocalDateTime updatedAt;
     @Column(name = "DeletedBy",insertable = false)
     private String deletedBy;

@@ -46,3 +46,5 @@ cumi:
             - index2
 #cumi.api.base-url
 #cumi.es.defined-indexes
+server:
+  port: 8080
