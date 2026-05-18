@@ -1,0 +1,66 @@
+@echo off
+echo ===================================================
+echo AUTOMATIC DEPLOYMENT SCRIPT - BATCH 31
+echo ===================================================
+
+:: 1. CEK FOLDER TARGET
+echo [Langkah 1] Memeriksa folder target...
+IF EXIST "D:\Class-Bootcamp\DEPHLOY\Batch31\BE\target" (
+    :: 1.1 Jika ada, masuk ke folder itu
+    echo Folder target ditemukan. Masuk ke folder...
+    CD /D "D:\Class-Bootcamp\DEPHLOY\Batch31\BE\target"
+
+    :: 1.1.a Stop jar yang sedang berjalan paul-api.jar
+    echo Menghentikan paul-api.jar yang sedang berjalan...
+    FOR /F "tokens=1" %%i IN ('jps -m ^| findstr paul-api.jar') DO (
+        echo Menghentikan proses PID: %%i
+        taskkill /F /PID %%i 2>nul
+    )
+
+    :: 1.1.b Masuk ke folder BE
+    echo Masuk ke folder BE...
+    CD /D "D:\Class-Bootcamp\DEPHLOY\Batch31\BE"
+) ELSE (
+    :: 1.2 Jika tidak ada, lanjut ke proses 2
+    echo [Langkah 1.2] Folder target tidak ditemukan. Lanjut ke proses 2...
+    CD /D "D:\Class-Bootcamp\DEPHLOY\Batch31\BE"
+)
+
+:: 2. EXECUTE MAVEN
+echo [Langkah 2] Menjalankan mvn clean install...
+CALL mvn clean install -DskipTests=true
+echo Menunggu delay 3 detik...
+timeout /t 3 /nobreak
+
+:: 3. CEK FOLDER TARGET (LOOPING JIKA BELUM ADA)
+:STEP3
+echo [Langkah 3] Memeriksa folder target pasca-build...
+IF EXIST "D:\Class-Bootcamp\DEPHLOY\Batch31\BE\target" (
+    :: 3.1 Kalau ada, masuk ke folder tersebut
+    echo Folder target ditemukan. Masuk ke folder...
+    CD /D "D:\Class-Bootcamp\DEPHLOY\Batch31\BE\target"
+    :: 3.2.b Lanjut ke langkah 4
+    GOTO STEP4
+) ELSE (
+    :: 3.2 Kalau tidak ada, beri delay 5 second
+    echo Folder target belum siap. Delay 5 detik...
+    timeout /t 5 /nobreak
+    :: 3.2.a Kemudian jalankan kembali langkah ke 3
+    GOTO STEP3
+)
+
+:: 4. CEK FILE PAUL-API.JAR
+:STEP4
+echo [Langkah 4] Memeriksa file paul-api.jar...
+IF EXIST "paul-api.jar" (
+    :: 4.1 Kalau ada, run script java -jar paul-api.jar
+    echo [Langkah 4.1] File ditemukan! Menjalankan paul-api.jar...
+    java -jar -DDB_URL=e84b3efac0261a03fff0c5182c725421fca147c61a2530b148ed6cbcabf727df4c99eb129046ef3ec6d7d3eafdfb47413abcc8cd85318145d99908aafe7f4b0db594c3a51aa6675b6af17f83ba3b3d59bace672d05bd6d91a2ac30bf56bab411 -DDB_USERNAME=6d4bbf96fec4cbd55fc9be6954a06d17 -DDB_PASSWORD=034456e6b2b6e4a86a38ffc10fbe7445 paul-api.jar
+) ELSE (
+    :: 4.2 Kalau tidak ada, delay 10 s
+    echo [Langkah 4.2] File paul-api.jar belum ada. Delay 3 detik...
+    timeout /t 10 /nobreak
+    :: 4.2a Run script java -jar paul-api.jar
+    echo [Langkah 4.2a] Mencoba menjalankan paul-api.jar...
+    java -jar -DDB_URL=e84b3efac0261a03fff0c5182c725421fca147c61a2530b148ed6cbcabf727df4c99eb129046ef3ec6d7d3eafdfb47413abcc8cd85318145d99908aafe7f4b0db594c3a51aa6675b6af17f83ba3b3d59bace672d05bd6d91a2ac30bf56bab411 -DDB_USERNAME=6d4bbf96fec4cbd55fc9be6954a06d17 -DDB_PASSWORD=034456e6b2b6e4a86a38ffc10fbe7445 paul-api.jar
+)

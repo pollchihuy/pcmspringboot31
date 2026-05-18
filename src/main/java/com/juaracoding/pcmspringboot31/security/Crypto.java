@@ -53,7 +53,7 @@ public class Crypto {
     }
 
     public static void main(String[] args) {
-        String strToEncrypt = "8439cd08a17d69";//put text to encrypt in here
+        String strToEncrypt = "password2";//put text to encrypt in here
         System.out.println("Encryption Result : "+performEncrypt(strToEncrypt));
 //        e84b3efac0261a03fff0c5182c725421fca147c61a2530b148ed6cbcabf727df4c99eb129046ef3ec6d7d3eafdfb47413abcc8cd85318145d99908aafe7f4b0db594c3a51aa6675b6af17f83ba3b3d59bace672d05bd6d91a2ac30bf56bab411
 //        e84b3efac0261a03fff0c5182c725421fca147c61a2530b148ed6cbcabf727df4c99eb129046ef3ec6d7d3eafdfb47413abcc8cd85318145d99908aafe7f4b0db594c3a51aa6675b6af17f83ba3b3d59bace672d05bd6d91a2ac30bf56bab411
